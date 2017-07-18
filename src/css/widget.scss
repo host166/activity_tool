@@ -1,0 +1,10 @@
+// 修改一些mintUI组件内部的样式
+@import "~variable";
+
+body{
+
+	//messageBox -- 按钮 --文字大小
+	.mint-msgbox-btn{
+		font-size:30px;
+	}
+}

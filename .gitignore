@@ -1,0 +1,10 @@
+*.iml
+.DS_Store
+npm-debug.log
+userSignIn.js
+.idea/
+node_modules/
+static/
+test/
+dist/
+bak/
