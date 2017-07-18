@@ -85,14 +85,13 @@ function uploadStart(){
 function login(){
     oServer({
         method : 'POST',
-        url : baseConf.servUrl+'/user/login?',
+        url : baseConf.servUrl+'/sign?',
         params : {
             uname : userSignIn.uname,
             upwd  : userSignIn.upwd,
             reme  : false
         },
         callback : function( err,resp ) {
-            // console.log( "login:",resp.statusCode,resp.body,resp.cookies );
             if( !resp.body.checkSuccess ){
                 console.log(" ---------- 登录失败:"+resp.body+" ---------- "); 
                 return false;
@@ -163,7 +162,7 @@ function recursionBypath(){
 //创建目录
 function add(filepath,name,remarks,desc,fn){
     oServer({
-        url : baseConf.servUrl+'/file/add?',
+        url : baseConf.servUrl+'/addfile?',
         params : {
             'fileId' : 0,
             'domainName' : '127.0.0.1',
@@ -188,9 +187,8 @@ function add(filepath,name,remarks,desc,fn){
 };
 //查询目录
 function bypath(filepath,fn){
-    // console.log(baseConf.servUrl+'/file/get/bypath?','domain_id=',baseConf.fixedArgs.domainId,'&file_path=',filepath);
     oServer({
-        url : baseConf.servUrl+'/file/get/bypath?',
+        url : baseConf.servUrl+'/routeGetFile?',
         params : {
             'domain_id' : baseConf.fixedArgs.domainId,
             'file_path' : filepath
@@ -213,7 +211,7 @@ function bypath(filepath,fn){
 function upload(){
     //'/127.0.0.1/mobile/activitys/2017/07/v1',
     oServer({
-        url : baseConf.servUrl+'/file/upload?',
+        url : baseConf.servUrl+'/uploadFile?',
         params : {
             'domainId' : baseConf.fixedArgs.domainId,
             'filePath' : `/${baseConf.uploadAddress}`,    
@@ -243,7 +241,7 @@ function upload(){
 //发布功能
 function publish(){
     oServer({
-        url : baseConf.servUrl+'/file/publish?',
+        url : baseConf.servUrl+'/publishFile?',
         params : {
             'domainId' : baseConf.fixedArgs.domainId,
             'customUrl': baseConf.uploadAddress,
@@ -263,45 +261,3 @@ function publish(){
         }
     });
 };
-
-// // step
-// function *step(){
-//     yield login();
-//     yield upload();
-// };
-// var oStep = step();
-// console.log(
-//     oStep.next(),
-//     oStep.next()
-// );
-
-// var path = require('path');
-// var fs = require('fs');
-// var http = require('http');
-// var mineType = require('mime-types');
-// var FormData = require('form-data');
-
-// var form = new FormData();
-// var filePath = path.resolve('dist/170630_zhiji/170630_zhiji.zip');  
-// var oReadFile = fs.readFileSync(filePath);  
-//     oReadFile = new Buffer(oReadFile).toString('base64');  
-// var base64 = 'data:' + mineType.lookup(filePath) + ';base64,' + oReadFile;
-
-// fs.writeFileSync('dist/value.html', oReadFile, { //appendFile
-//     encoding: "utf8",
-//     flags: "a",
-//     mode: 438
-// });
-
-
-
-
-// //方法默认属性
-// needle.defaults({
-//     json : true, 
-//     open_timeout:5000
-// })
-
-
-
-

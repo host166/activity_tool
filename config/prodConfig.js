@@ -30,8 +30,5 @@ var dConfig = (obj)=>{
 module.exports = {
     'toolInit' : dConfig({
         ver : 'v3'
-    }),
-    'giftmoney001' : dConfig({
-        port : 3110
     })
 };
